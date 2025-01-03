@@ -1,21 +1,22 @@
 #include <stdio.h>
+unsigned long long modularExponentiation(unsigned long long base, unsigned long long exponent, unsigned long long modulus) {
+    unsigned long long result = 1;
+    base = base % modulus;
 
-int main() {
-    unsigned long long B, N, M, result = 1;
-
-    printf("Enter base (B), exponent (N), and modulus (M): ");
-    scanf("%llu %llu %llu", &B, &N, &M);
-
-    B = B % M; // Reduce base modulo M
-    while (N > 0) {
-        if (N % 2 == 1) {
-            result = (result * B) % M; // Multiply result if N is odd
+    while (exponent > 0) {
+        if (exponent % 2 == 1) {
+            result = (result * base) % modulus;
         }
-        N /= 2;          // Halve the exponent
-        B = (B * B) % M; // Square the base
+        exponent /= 2;
+        base = (base * base) % modulus;
     }
-
-    // Output the result
+    return result;
+}
+int main() {
+    unsigned long long base, exponent, modulus;
+    printf("Enter base, exponent, and modulus: ");
+    scanf("%llu %llu %llu", &base, &exponent, &modulus);
+    unsigned long long result = modularExponentiation(base, exponent, modulus);
     printf("Result: %llu\n", result);
 
     return 0;
