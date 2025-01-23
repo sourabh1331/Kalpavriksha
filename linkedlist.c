@@ -123,7 +123,6 @@ void deleteAtEnd() {
     temp->next = NULL;
 }
 
-// Delete at a specific position
 void deleteAtPosition(int position) {
     if (position < 1) {
         printf("Invalid position\n");
